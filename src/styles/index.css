@@ -159,4 +159,9 @@
     width: 100vw;
     margin-left: calc(50% - 50vw);
   }
+
+  /* GSAP SplitText chars need inline-block for transform animation */
+  .char-item {
+    display: inline-block;
+  }
 }

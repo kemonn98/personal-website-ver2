@@ -2,6 +2,7 @@ import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { useSection } from '../contexts/SectionContext'
+import { AnimatedText } from './AnimatedText'
 
 export function FixedCorners() {
   const [mounted, setMounted] = useState(false)
@@ -13,7 +14,7 @@ export function FixedCorners() {
   }, [])
 
   const currentSectionName = sectionNames[currentIndex] ?? 'Home'
-  const sectionCounter = `${String(currentIndex + 1).padStart(2, '0')} - ${String(totalSections).padStart(2, '0')}`
+  const sectionCounter = `${String(currentIndex + 1).padStart(2, '0')}/${String(totalSections).padStart(2, '0')}`
 
   return (
     <>
@@ -55,18 +56,16 @@ export function FixedCorners() {
       <div
         className="fixed bottom-4 left-4 z-40 text-[6rem] text-muted-foreground font-display"
         data-font="display"
-        aria-live="polite"
       >
-        {currentSectionName}
+        <AnimatedText key={currentSectionName} text={currentSectionName} align="left" />
       </div>
 
       {/* Bottom right: section counter 01/05 — numerical */}
       <div
-        className="fixed bottom-4 right-4 z-40 text-right text-[6rem] text-muted-foreground tabular-nums font-display"
+        className="fixed bottom-4 right-4 z-40 text-[6rem] text-muted-foreground tabular-nums font-display"
         data-font="display"
-        aria-live="polite"
       >
-        {sectionCounter}
+        <AnimatedText key={sectionCounter} text={sectionCounter} align="right" />
       </div>
     </>
   )
