@@ -93,7 +93,7 @@ export function Hero() {
           const container = document.querySelector('.scroll-snap-container')
           if (el && container) (container as HTMLElement).scrollTo({ top: el.offsetTop, behavior: 'smooth' })
         }}
-        className="mt-16 inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
+        className="mt-16 inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors font-display"
         aria-label="Scroll to about"
       >
         <ArrowDown className="h-3 w-3" />

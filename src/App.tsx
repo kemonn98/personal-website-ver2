@@ -8,13 +8,19 @@ import { Products } from './components/Products'
 import { Work } from './components/Work'
 
 function AppContent() {
-  const { setScrollContainer } = useSection()
+  const { setScrollContainer, scrollContainerRef } = useSection()
 
   return (
-    <div className="h-screen overflow-hidden bg-background text-foreground font-mono relative">
+    <div className="h-screen overflow-hidden bg-background text-foreground relative">
       <div className="vertical-grid" aria-hidden />
       <FixedCorners />
-      <main ref={setScrollContainer} className="scroll-snap-container">
+      <main
+        ref={(el) => {
+          scrollContainerRef.current = el
+          setScrollContainer(el)
+        }}
+        className="scroll-snap-container"
+      >
         <Hero />
         <About />
         <Work />
@@ -32,6 +38,8 @@ function App() {
       defaultTheme="dark"
       enableSystem
       disableTransitionOnChange
+      themes={['light', 'dark']}
+      storageKey="muhsalmon-theme"
     >
       <SectionProvider>
         <AppContent />

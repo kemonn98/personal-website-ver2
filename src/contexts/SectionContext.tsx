@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
 
 export const SECTION_NAMES = ['Home', 'About', 'Work', 'Products', 'Contact'] as const
 export const TOTAL_SECTIONS = SECTION_NAMES.length
@@ -7,6 +7,8 @@ type SectionContextValue = {
   currentIndex: number
   sectionNames: readonly string[]
   totalSections: number
+  scrollContainerRef: React.RefObject<HTMLElement | null>
+  scrollContainer: HTMLElement | null
   setScrollContainer: (el: HTMLElement | null) => void
 }
 
@@ -14,6 +16,8 @@ const SectionContext = createContext<SectionContextValue>({
   currentIndex: 0,
   sectionNames: SECTION_NAMES,
   totalSections: TOTAL_SECTIONS,
+  scrollContainerRef: { current: null },
+  scrollContainer: null,
   setScrollContainer: () => {},
 })
 
@@ -22,6 +26,7 @@ const SECTION_IDS = ['home', 'about', 'work', 'products', 'contact']
 export function SectionProvider({ children }: { children: ReactNode }) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [scrollContainer, setScrollContainerState] = useState<HTMLElement | null>(null)
+  const scrollContainerRef = useRef<HTMLElement | null>(null)
 
   const setScrollContainer = useCallback((el: HTMLElement | null) => {
     setScrollContainerState(el)
@@ -44,7 +49,7 @@ export function SectionProvider({ children }: { children: ReactNode }) {
       {
         root: scrollContainer,
         rootMargin: '0px',
-        threshold: 0.5,
+        threshold: 0.01, // low threshold so tall Work section (12000px) gets detected
       }
     )
 
@@ -58,6 +63,8 @@ export function SectionProvider({ children }: { children: ReactNode }) {
         currentIndex,
         sectionNames: SECTION_NAMES,
         totalSections: TOTAL_SECTIONS,
+        scrollContainerRef,
+        scrollContainer,
         setScrollContainer,
       }}
     >

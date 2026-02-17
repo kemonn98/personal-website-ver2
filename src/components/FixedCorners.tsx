@@ -13,23 +13,23 @@ export function FixedCorners() {
   }, [])
 
   const currentSectionName = sectionNames[currentIndex] ?? 'Home'
-  const sectionCounter = `${String(currentIndex + 1).padStart(2, '0')}/${String(totalSections).padStart(2, '0')}`
+  const sectionCounter = `${String(currentIndex + 1).padStart(2, '0')} - ${String(totalSections).padStart(2, '0')}`
 
   return (
     <>
-      {/* Top left: muhsalmon.com, © 2026 */}
-      <div className="fixed top-4 left-4 z-40 flex flex-col gap-1 text-xs text-muted-foreground">
+      {/* Top left: muhsalmon.com, © 2026 — navigation */}
+      <div className="fixed top-4 left-4 z-40 flex flex-col gap-1 text-2xl text-muted-foreground font-display" data-font="display">
         <a
           href="#"
           className="text-foreground hover:text-muted-foreground transition-colors w-fit"
         >
           muhsalmon.com
         </a>
-        <span>© 2026</span>
+        <span className="text-xs">All Right Reserved © 2026</span>
       </div>
 
-      {/* Top right: Dark/Light + icon */}
-      <div className="fixed top-4 right-4 z-40">
+      {/* Top right: Dark/Light + icon — navigation */}
+      <div className="fixed top-4 right-4 z-40 font-display" data-font="display">
         {mounted && (
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
@@ -38,12 +38,12 @@ export function FixedCorners() {
           >
             {theme === 'dark' ? (
               <>
-                <span>Light</span>
+                <span>Dark Mode</span>
                 <Sun className="h-3.5 w-3.5" />
               </>
             ) : (
               <>
-                <span>Dark</span>
+                <span>Light Mode</span>
                 <Moon className="h-3.5 w-3.5" />
               </>
             )}
@@ -51,17 +51,19 @@ export function FixedCorners() {
         )}
       </div>
 
-      {/* Bottom left: current section name */}
+      {/* Bottom left: current section name — subheading */}
       <div
-        className="fixed bottom-4 left-4 z-40 text-[2.125rem] text-muted-foreground"
+        className="fixed bottom-4 left-4 z-40 text-[6rem] text-muted-foreground font-display"
+        data-font="display"
         aria-live="polite"
       >
         {currentSectionName}
       </div>
 
-      {/* Bottom right: section counter 01/05 */}
+      {/* Bottom right: section counter 01/05 — numerical */}
       <div
-        className="fixed bottom-4 right-4 z-40 text-right text-[2.125rem] text-muted-foreground tabular-nums"
+        className="fixed bottom-4 right-4 z-40 text-right text-[6rem] text-muted-foreground tabular-nums font-display"
+        data-font="display"
         aria-live="polite"
       >
         {sectionCounter}

@@ -58,7 +58,10 @@
     letter-spacing: 0.01em;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6,
+  .label,
+  nav,
+  [data-font="display"] {
     font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
     font-optical-sizing: auto;
     font-variation-settings: 'opsz' 32;
@@ -101,18 +104,6 @@
     background-size: 100% 100%;
   }
 
-  .section {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-
-  @media (min-width: 768px) {
-    .section {
-      padding-top: 5rem;
-      padding-bottom: 5rem;
-    }
-  }
-
   /*
    * Scroll snap: container has fixed height + overflow, sections get snap-align.
    * See: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scroll_Snap
@@ -131,6 +122,21 @@
     scroll-snap-stop: always;
   }
 
+  .work-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+  }
+
+  .work-sticky {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .label {
     font-size: 0.6875rem;
     text-transform: uppercase;
@@ -147,5 +153,10 @@
 
   .link-underline:hover {
     color: hsl(var(--muted-foreground));
+  }
+
+  .full-bleed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
   }
 }
