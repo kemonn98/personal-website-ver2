@@ -22,7 +22,7 @@ export function FixedCorners() {
       <div className="fixed top-4 left-4 z-40 flex flex-col gap-1 text-2xl text-muted-foreground font-display" data-font="display">
         <a
           href="#"
-          className="text-foreground hover:text-muted-foreground transition-colors w-fit"
+          className="text-foreground hover:text-foreground transition-colors w-fit"
         >
           muhsalmon.com
         </a>
@@ -34,7 +34,7 @@ export function FixedCorners() {
         {mounted && (
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded"
+            className="inline-flex items-center gap-2 text-xs text-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded"
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? (
@@ -55,7 +55,7 @@ export function FixedCorners() {
       {/* Bottom left: current section name — subheading (key by index so it always updates on section change) */}
       <div
         key={`section-name-${currentIndex}`}
-        className="fixed bottom-4 left-4 z-40 text-[6rem] text-muted-foreground font-display"
+        className="fixed bottom-4 left-4 z-40 text-[6rem] text-foreground font-display"
         data-font="display"
       >
         <AnimatedText key={currentSectionName} text={currentSectionName} align="left" />
@@ -64,7 +64,7 @@ export function FixedCorners() {
       {/* Bottom right: section counter 01/05 — numerical (key by index so it always updates on section change) */}
       <div
         key={`section-counter-${currentIndex}`}
-        className="fixed bottom-4 right-4 z-40 text-[6rem] text-muted-foreground tabular-nums font-display"
+        className="fixed bottom-4 right-4 z-40 text-[6rem] text-foreground tabular-nums font-display"
         data-font="display"
       >
         <AnimatedText key={sectionCounter} text={sectionCounter} align="right" />
