@@ -32,6 +32,8 @@ export function SectionProvider({ children }: { children: ReactNode }) {
     setScrollContainerState(el)
   }, [])
 
+  const ratiosRef = useRef<Record<number, number>>({})
+
   useEffect(() => {
     if (!scrollContainer) return
     const sections = SECTION_IDS.map((id) => document.getElementById(id)).filter(Boolean)
@@ -40,16 +42,27 @@ export function SectionProvider({ children }: { children: ReactNode }) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return
-          const id = entry.target.id
+          const id = (entry.target as HTMLElement).id
           const idx = SECTION_IDS.indexOf(id)
-          if (idx !== -1) setCurrentIndex(idx)
+          if (idx === -1) return
+          ratiosRef.current[idx] = entry.intersectionRatio
         })
+        const ratios = ratiosRef.current
+        let maxRatio = -1
+        let maxIdx = 0
+        for (let i = 0; i < SECTION_IDS.length; i++) {
+          const r = ratios[i] ?? 0
+          if (r > maxRatio) {
+            maxRatio = r
+            maxIdx = i
+          }
+        }
+        setCurrentIndex(maxIdx)
       },
       {
         root: scrollContainer,
         rootMargin: '0px',
-        threshold: 0.01, // low threshold so tall Work section (12000px) gets detected
+        threshold: [0, 0.01, 0.1, 0.5, 1], // multiple thresholds so we get ratio updates
       }
     )
 

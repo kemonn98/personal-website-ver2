@@ -1,11 +1,11 @@
 import { SectionProvider, useSection } from './contexts/SectionContext'
-import { ThemeProvider } from './components/ThemeProvider'
-import { About } from './components/About'
-import { Contact } from './components/Contact'
-import { FixedCorners } from './components/FixedCorners'
-import { Hero } from './components/Hero'
-import { Products } from './components/Products'
-import { Work } from './components/Work'
+import { ThemeProvider } from './components/theme/ThemeProvider'
+import { About } from './components/sections/About'
+import { Contact } from './components/sections/Contact'
+import { FixedCorners } from './components/layout/Navigation'
+import { Hero } from './components/sections/Hero'
+import { Products } from './components/sections/Products'
+import { Work } from './components/sections/Work'
 
 function AppContent() {
   const { setScrollContainer, scrollContainerRef } = useSection()
