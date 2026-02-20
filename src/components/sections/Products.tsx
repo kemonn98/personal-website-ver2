@@ -216,9 +216,9 @@ export function Products() {
     <section
       id="products"
       ref={sectionRef}
-      className="section scroll-snap-section flex flex-col gap-16 justify-between min-h-screen cursor-grab active:cursor-grabbing"
+      className="section flex flex-col justify-between py-24 cursor-grab active:cursor-grabbing z-10"
     >
-      <div className="site-wrap w-full shrink-0 pt-16">
+      <div className="site-wrap w-full shrink-0">
         <p className="label mb-6">Products & plugins</p>
         <h2 className="text-3xl font-medium text-foreground mb-6" data-font="display">
           I like to build products, learn, code, and actively give impact to the community by building plugins.
@@ -229,7 +229,7 @@ export function Products() {
       </div>
       <div
         ref={trackRef}
-        className="products-track full-bleed pb-56 w-full shrink-0 overflow-x-hidden overflow-y-visible py-16 relative"
+        className="products-track full-bleed w-full shrink-0 overflow-x-hidden overflow-y-visible py-16 relative"
       >
         <div
           className="absolute inset-y-0 left-0 w-[20vw] max-w-[240px] bg-gradient-to-r from-background to-transparent pointer-events-none z-10"
@@ -256,7 +256,7 @@ export function Products() {
               <a
                 key={index}
                 href={product.url}
-                className="products-card group absolute top-0 flex flex-col justify-between rounded-xl border border-border bg-card text-card-foreground p-5 shadow-sm transition-[box-shadow,border-color] duration-300 hover:border-muted-foreground/30 hover:shadow-md overflow-hidden will-change-transform"
+                className="products-card group absolute top-0 flex flex-col justify-between rounded-xl bg-card text-card-foreground p-5 shadow-sm transition-[box-shadow,border-color] duration-300 hover:border-muted-foreground/30 hover:shadow-md overflow-hidden will-change-transform"
                 style={{
                   width: CARD_WIDTH,
                   height: CARD_HEIGHT,

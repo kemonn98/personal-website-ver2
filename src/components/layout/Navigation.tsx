@@ -55,7 +55,7 @@ export function FixedCorners() {
       {/* Bottom left: current section name — subheading (key by index so it always updates on section change) */}
       <div
         key={`section-name-${currentIndex}`}
-        className="fixed bottom-4 left-4 z-40 text-[6rem] text-foreground font-display"
+        className="fixed bottom-4 left-4 z-40 text-[6vw] text-foreground font-display"
         data-font="display"
       >
         <AnimatedText key={currentSectionName} text={currentSectionName} align="left" />
@@ -64,7 +64,7 @@ export function FixedCorners() {
       {/* Bottom right: section counter 01/05 — numerical (key by index so it always updates on section change) */}
       <div
         key={`section-counter-${currentIndex}`}
-        className="fixed bottom-4 right-4 z-40 text-[6rem] text-foreground tabular-nums font-display"
+        className="fixed bottom-4 right-4 z-40 text-[6vw] text-foreground tabular-nums font-display"
         data-font="display"
       >
         <AnimatedText key={sectionCounter} text={sectionCounter} align="right" />

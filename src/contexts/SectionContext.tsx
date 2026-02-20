@@ -60,9 +60,9 @@ export function SectionProvider({ children }: { children: ReactNode }) {
         setCurrentIndex(maxIdx)
       },
       {
-        root: scrollContainer,
+        root: scrollContainer === document.documentElement ? null : scrollContainer,
         rootMargin: '0px',
-        threshold: [0, 0.01, 0.1, 0.5, 1], // multiple thresholds so we get ratio updates
+        threshold: [0, 0.01, 0.1, 0.5, 1],
       }
     )
 

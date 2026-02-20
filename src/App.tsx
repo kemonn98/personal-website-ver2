@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { ReactLenis } from 'lenis/react'
 import { SectionProvider, useSection } from './contexts/SectionContext'
 import { ThemeProvider } from './components/theme/ThemeProvider'
 import { About } from './components/sections/About'
@@ -10,24 +12,39 @@ import { Work } from './components/sections/Work'
 function AppContent() {
   const { setScrollContainer, scrollContainerRef } = useSection()
 
+  useEffect(() => {
+    setScrollContainer(document.documentElement)
+    scrollContainerRef.current = document.documentElement
+    return () => {
+      setScrollContainer(null)
+      scrollContainerRef.current = null
+    }
+  }, [setScrollContainer, scrollContainerRef])
+
   return (
-    <div className="h-screen overflow-hidden bg-background text-foreground relative">
+    <>
+      {/* Grid outside ReactLenis so position:fixed is never affected by scroll transform */}
       <div className="vertical-grid" aria-hidden />
       <FixedCorners />
-      <main
-        ref={(el) => {
-          scrollContainerRef.current = el
-          setScrollContainer(el)
+      <ReactLenis
+        root
+        options={{
+          lerp: 0.08,
+          duration: 1.2,
+          smoothWheel: true,
         }}
-        className="scroll-snap-container"
       >
-        <Hero />
-        <About />
-        <Work />
-        <Products />
-        <Contact />
-      </main>
-    </div>
+        <div className="text-foreground relative z-10">
+          <main>
+            <Hero />
+            <About />
+            <Work />
+            <Products />
+            <Contact />
+          </main>
+        </div>
+      </ReactLenis>
+    </>
   )
 }
 

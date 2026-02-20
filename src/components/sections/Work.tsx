@@ -1,11 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
 import { ExternalLink } from 'lucide-react'
-import { useSection } from '../../contexts/SectionContext'
-
-const SCROLL_RANGE = 4000
-const SPARE_SCROLL = 1000
-const SECTION_HEIGHT = SCROLL_RANGE + SPARE_SCROLL
-const PROJECT_COUNT = 4
 
 const projects = [
   {
@@ -65,54 +58,28 @@ const recentClients = [
 ]
 
 export function Work() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const { scrollContainer } = useSection()
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  useEffect(() => {
-    const container = scrollContainer
-    const section = sectionRef.current
-    if (!container || !section) return
-
-    const onScroll = () => {
-      const scrollTop = container.scrollTop
-      const sectionTop = section.offsetTop
-      const progress = Math.max(0, Math.min(1, (scrollTop - sectionTop) / SCROLL_RANGE))
-      const index = Math.min(PROJECT_COUNT - 1, Math.floor(progress * PROJECT_COUNT))
-      setActiveIndex(index)
-    }
-
-    onScroll()
-    container.addEventListener('scroll', onScroll, { passive: true })
-    return () => container.removeEventListener('scroll', onScroll)
-  }, [scrollContainer])
-
   return (
-    <section
-      ref={sectionRef}
-      id="work"
-      className="section scroll-snap-section work-section"
-      style={{ height: SECTION_HEIGHT }}
-    >
-      <div className="sticky top-0 site-wrap py-16 min-h-screen flex flex-col justify-between">
+    <section id="work" className="section work-section py-24">
+      <div className="site-wrap flex flex-col gap-16">
         <div>
           <p className="label mb-6">Selected work</p>
-          <div className="space-y-6">
-            {projects.map((project, i) => (
-              <div key={project.name}>
-                <div className="flex flex-col gap-4">
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-3xl font-medium text-foreground hover:text-muted-foreground transition-colors inline-flex items-center gap-2 w-fit font-display"
-                    data-font="display"
-                  >
-                    {project.name}
-                    <ExternalLink className="h-4 w-4 opacity-60" />
-                  </a>
-                </div>
-                {i === activeIndex && (
+          <div className="space-y-2">
+            {projects.map((project) => (
+              <div
+                key={project.name}
+                className="group grid grid-rows-[auto_0fr] transition-[grid-template-rows] duration-300 ease-out hover:grid-rows-[auto_1fr]"
+              >
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-3xl font-medium text-foreground hover:text-muted-foreground transition-colors inline-flex items-center gap-2 w-fit font-display py-2 -my-2"
+                  data-font="display"
+                >
+                  {project.name}
+                  <ExternalLink className="h-4 w-4 opacity-60" />
+                </a>
+                <div className="overflow-hidden">
                   <div className="pt-2 pb-4 space-y-2">
                     <p className="text-sm text-muted-foreground">
                       {project.description}
@@ -124,7 +91,7 @@ export function Work() {
                       {project.tags.join(' · ')}
                     </p>
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>

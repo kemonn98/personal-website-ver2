@@ -1,5 +1,6 @@
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
 import { useRef, useState, useEffect } from 'react'
+import { useLenis } from 'lenis/react'
 import { useSection } from '../../contexts/SectionContext'
 import ColorBends from '../effects/ColorBends'
 
@@ -9,6 +10,7 @@ export function Hero() {
   const cardRef = useRef<HTMLDivElement>(null)
   const [transform, setTransform] = useState({ rotateX: 0, rotateY: 0 })
   const { currentIndex } = useSection()
+  const lenis = useLenis()
   const isHome = currentIndex === 0
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="scroll-snap-section relative flex flex-col items-center justify-center pt-20 px-4"
+      className="relative flex flex-col items-center justify-center min-h-screen pt-20 px-4"
       style={{ perspective: '1000px' }}
     >
       <div className="absolute inset-0 overflow-hidden" aria-hidden>
@@ -122,8 +124,11 @@ export function Hero() {
         onClick={(e) => {
           e.preventDefault()
           const el = document.getElementById('about')
-          const container = document.querySelector('.scroll-snap-container')
-          if (el && container) (container as HTMLElement).scrollTo({ top: el.offsetTop, behavior: 'smooth' })
+          if (el) {
+            const top = el.getBoundingClientRect().top + window.scrollY
+            if (lenis) lenis.scrollTo(top, { lerp: 0.08, duration: 1.2 })
+            else window.scrollTo({ top, behavior: 'smooth' })
+          }
         }}
         className="mt-16 inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors font-display"
         aria-label="Scroll to about"

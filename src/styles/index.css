@@ -50,7 +50,7 @@
   --ring: oklch(0.556 0 0);
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.23 0 0);
   --card-foreground: oklch(0.985 0 0);
   --input: oklch(1 0 0 / 15%);
   --popover: oklch(0.205 0 0);
@@ -89,7 +89,6 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     letter-spacing: 0.01em;
-    overflow: hidden;
   }
 
   h1, h2, h3, h4, h5, h6,
@@ -123,49 +122,25 @@
     }
   }
 
-  /* 4 vertical lines: left (gap from window), left (section), right (section), right (gap from window) */
+  /* 4 vertical lines: fixed to viewport. No mask – section background removed so grid shows through. */
   .vertical-grid {
-    position: absolute;
+    position: fixed;
     inset: 0;
     width: 100%;
+    min-height: 100vh;
+    z-index: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(90deg, transparent 0, transparent calc(1rem - 1px), hsl(var(--border)) 1rem, transparent calc(1rem + 1px)),
-      linear-gradient(90deg, transparent 0, transparent calc(50% - 23rem - 1px), hsl(var(--border)) calc(50% - 23rem), transparent calc(50% - 23rem + 1px)),
-      linear-gradient(90deg, transparent 0, transparent calc(50% + 23rem - 1px), hsl(var(--border)) calc(50% + 23rem), transparent calc(50% + 23rem + 1px)),
-      linear-gradient(90deg, transparent 0, transparent calc(100% - 1rem - 1px), hsl(var(--border)) calc(100% - 1rem), transparent calc(100% - 1rem + 1px));
+      linear-gradient(90deg, transparent 0, transparent calc(50% - 23rem - 1px), var(--border) calc(50% - 23rem), transparent calc(50% - 23rem + 1px)),
+      linear-gradient(90deg, transparent 0, transparent calc(50% + 23rem - 1px), var(--border) calc(50% + 23rem), transparent calc(50% + 23rem + 1px));
     background-repeat: no-repeat;
     background-size: 100% 100%;
-  }
-
-  /*
-   * Scroll snap: container has fixed height + overflow, sections get snap-align.
-   * See: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scroll_Snap
-   */
-  .scroll-snap-container {
-    height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-  }
-
-  .scroll-snap-section {
-    min-height: 100vh;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-  }
-
-  .work-section {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    position: relative;
   }
 
   .work-sticky {
     position: sticky;
     top: 0;
-    min-height: 100vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
