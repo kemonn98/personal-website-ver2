@@ -49,7 +49,7 @@ export function Hero() {
     <section
       id="home"
       className="scroll-snap-section relative flex flex-col items-center justify-center pt-20 px-4"
-      style={{ perspective: '100px' }}
+      style={{ perspective: '1000px' }}
     >
       <div className="absolute inset-0 overflow-hidden" aria-hidden>
         <ColorBends
@@ -59,7 +59,7 @@ export function Hero() {
           scale={1}
           frequency={1}
           warpStrength={1}
-          mouseInfluence={1}
+          mouseInfluence={0.2}
           parallax={0.5}
           noise={0.1}
           transparent
@@ -70,7 +70,7 @@ export function Hero() {
       <div className="relative z-10 flex flex-col items-center">
       <div
         ref={cardRef}
-        className="relative border border-foreground/80 rounded-sm w-full max-w-[24rem] aspect-[3/4] flex flex-col justify-between px-6 py-6 transition-transform duration-150 ease-out bg-black/10 backdrop-blur-[100px]"
+        className="relative border border-foreground/10 rounded-xl w-full max-w-[24rem] aspect-[3/4] flex flex-col justify-between px-6 py-6 transition-transform duration-150 ease-out bg-black/10 backdrop-blur-[100px]"
         style={{
           transformStyle: 'preserve-3d',
           transform: `rotateX(${transform.rotateX}deg) rotateY(${transform.rotateY}deg)`,

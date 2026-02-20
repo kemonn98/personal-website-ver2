@@ -105,7 +105,7 @@ export function Work() {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-2xl font-medium text-foreground hover:text-muted-foreground transition-colors inline-flex items-center gap-2 w-fit font-display"
+                    className="text-3xl font-medium text-foreground hover:text-muted-foreground transition-colors inline-flex items-center gap-2 w-fit font-display"
                     data-font="display"
                   >
                     {project.name}

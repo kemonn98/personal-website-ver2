@@ -89,6 +89,7 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     letter-spacing: 0.01em;
+    overflow: hidden;
   }
 
   h1, h2, h3, h4, h5, h6,
@@ -196,6 +197,30 @@
   /* GSAP SplitText chars need inline-block for transform animation */
   .char-item {
     display: inline-block;
+  }
+
+  /* Products: normal horizontal scroll + drag */
+  .products-track-inner {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+  }
+
+  .products-track .products-card {
+    flex-shrink: 0;
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .products-section-dragging {
+    user-select: none;
+    -webkit-user-select: none;
   }
 }
 
