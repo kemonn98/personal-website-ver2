@@ -1,5 +1,5 @@
 ---
-description: Every prompt must follow AGENTS.md, design.md, and README.md
+description: Every prompt must follow AGENTS.md, design.md, CONTENT.md, and README.md
 alwaysApply: true
 ---
 
@@ -11,18 +11,20 @@ Before answering, planning, or editing **any** file in this repo, read and follo
 |----------|------|-------|
 | 1 | `AGENTS.md` | Architecture, conventions, git workflow, what to avoid |
 | 2 | `design.md` | Visual language: editorial × Swiss × dark, typography, spacing, no rounded, no cards |
-| 3 | `README.md` | Project summary, quick start, high-level scope |
+| 3 | `CONTENT.md` | Canonical copy, facts, links, section content for the portfolio |
+| 4 | `README.md` | Project summary, quick start, high-level scope |
 
 ## Rules
 
 - **Read first** — If you have not read these files in the current session, read them before making changes.
-- **Conflict resolution** — `design.md` wins for UI/visual decisions; `AGENTS.md` wins for code structure and agent behavior; `README.md` wins for project description and setup.
-- **Stay consistent** — New components, styles, and copy must match all three. If code diverges from `design.md`, refactor toward the design spec (see "Current vs Target" in `design.md`).
-- **Update docs** — When changing architecture or design tokens, update the relevant doc in the same task.
+- **Conflict resolution** — `design.md` wins for UI/visual decisions; `CONTENT.md` wins for copy and facts; `AGENTS.md` wins for code structure and agent behavior; `README.md` wins for project description and setup.
+- **Stay consistent** — New components, styles, and copy must match all four. If code diverges from `design.md`, refactor toward the design spec (see "Current vs Target" in `design.md`).
+- **Update docs** — When changing architecture, design tokens, or site copy, update the relevant doc in the same task.
 - **Branch context** — Default branch is `theme-2` (dark-only). See `AGENTS.md` for branch notes.
 
 ## Do not
 
 - Ignore `design.md` anti-patterns (rounded corners, card UI, shadows on content).
+- Invent portfolio copy, clients, or dates — use `CONTENT.md`.
 - Contradict section system or animation pipeline defined in `AGENTS.md`.
 - Introduce dependencies or patterns not aligned with the README tech stack without user approval.

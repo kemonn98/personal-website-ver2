@@ -2,7 +2,7 @@
 
 Design language for **Muhsalmon Personal Website v2** (`theme-2` branch).
 
-> **Source of truth** — Together with [`AGENTS.md`](./AGENTS.md) and [`README.md`](./README.md), this file governs every design and UI decision. Agents must read all three before making changes.
+> **Source of truth** — Together with [`AGENTS.md`](./AGENTS.md), [`CONTENT.md`](./CONTENT.md), and [`README.md`](./README.md), this file governs every design and UI decision. Agents must read all four before making changes.
 
 > **Direction:** Editorial typography, Swiss International Style structure, dark-only, minimalist, generous whitespace, **zero border-radius**, **no card UI**.
 

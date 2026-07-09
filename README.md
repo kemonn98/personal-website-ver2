@@ -8,6 +8,7 @@ All work in this repo must follow:
 
 - [`AGENTS.md`](./AGENTS.md) — agent & code conventions
 - [`design.md`](./DESIGN.md) — design system (editorial × Swiss × dark)
+- [`CONTENT.md`](./CONTENT.md) — canonical copy, facts, and section content
 - [`README.md`](./README.md) — this file
 
 ## Summary

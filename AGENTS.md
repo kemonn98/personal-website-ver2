@@ -4,21 +4,23 @@ Instructions for AI agents working in this repository.
 
 ## Source of Truth (required)
 
-**Every prompt, task, and code change must be based on these three documents:**
+**Every prompt, task, and code change must be based on these four documents:**
 
 | File | Role |
 |------|------|
 | [`AGENTS.md`](./AGENTS.md) | Architecture, conventions, git workflow, branches, do/don't |
-| [`design.md`](./design.md) | Design system: editorial × Swiss × dark, typography, spacing, components |
+| [`design.md`](./DESIGN.md) | Design system: editorial × Swiss × dark, typography, spacing, components |
+| [`CONTENT.md`](./CONTENT.md) | Canonical copy, facts, links, and section content for the portfolio |
 | [`README.md`](./README.md) | Project overview, tech stack summary, quick start |
 
 ### Agreement
 
-1. **Read before acting** — Agents must read all three files (or recall them from the current session) before planning or editing.
+1. **Read before acting** — Agents must read all four files (or recall them from the current session) before planning or editing.
 2. **Design-first UI** — Visual work follows `design.md` (no rounded corners, no card style, dark-only, minimalist).
-3. **Code follows architecture** — Structure, sections, animations, and contexts follow this file (`AGENTS.md`).
-4. **Scope from README** — Features and stack stay aligned with `README.md`; update README when scope changes.
-5. **Conflicts** — UI → `design.md`; code structure → `AGENTS.md`; project description → `README.md`.
+3. **Content from CONTENT.md** — Copy, facts, URLs, and section text follow `CONTENT.md`; do not invent clients, dates, or bios.
+4. **Code follows architecture** — Structure, sections, animations, and contexts follow this file (`AGENTS.md`).
+5. **Scope from README** — Features and stack stay aligned with `README.md`; update README when scope changes.
+6. **Conflicts** — UI → `design.md`; copy & facts → `CONTENT.md`; code structure → `AGENTS.md`; project description → `README.md`.
 
 Cursor rule: `.cursor/rules/project-source-of-truth.mdc` enforces this on every session.
 
