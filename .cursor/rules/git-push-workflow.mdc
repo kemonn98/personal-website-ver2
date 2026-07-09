@@ -1,0 +1,71 @@
+---
+description: When user says "git push", run add → commit → push on active branch
+alwaysApply: true
+---
+
+# Git Push Workflow
+
+When the user says **"git push"** (or equivalent: "push", "commit and push"), run the full workflow below. Do **not** run bare `git push` only.
+
+## Steps (in order)
+
+1. **Inspect** (parallel): `git status`, `git diff`, `git diff --staged`, `git log -5 --oneline`, `git branch --show-current`
+2. **Stage** relevant files only — never stage:
+   - `node_modules/`, `.DS_Store`, `node_modules/.vite/`
+   - `dist/` unless user explicitly wants build artifacts committed
+   - `.env`, credentials, secrets
+3. **Commit** if there are staged changes:
+   - **Read the full diff** — understand every meaningful change before writing the message
+   - **Message must match the actual changes** — describe *what* was done and *why*, not just file names
+   - Use HEREDOC: `git commit -m "$(cat <<'EOF' ... EOF)"`
+   - If nothing to commit, skip and go to push
+4. **Push** to the **currently active branch** (e.g. `theme-2`):
+   - `git push` if upstream exists
+   - `git push -u origin HEAD` if no upstream yet
+5. **Verify** with `git status` after push
+6. **Report** the commit message used so the user can confirm it matches the changes
+
+## Commit message rules (required)
+
+The message **must accurately reflect the changes** in the diff. Never use vague messages.
+
+| ❌ Bad | ✅ Good |
+|--------|---------|
+| `update files` | `add design.md and git push workflow guidelines` |
+| `fix stuff` | `fix ScrollTrigger sync after loader reveal` |
+| `update: src/App.tsx, design.md` | `document editorial Swiss design system in design.md` |
+| `changes` | `add Cursor rules for source-of-truth and git push` |
+
+### How to write the message
+
+1. Identify the **type**: `feat`, `fix`, `docs`, `refactor`, `style`, `chore` (match recent commits in `git log`)
+2. State **what changed** in plain language (component, doc, feature, bug)
+3. Optionally add **why** if not obvious (1–2 sentences max)
+4. Cover **all staged changes** — if changes are unrelated, ask user whether to split into separate commits
+
+### Examples
+
+```
+docs: add design.md with editorial Swiss dark mode guidelines
+
+Add AGENTS.md git push workflow and require commit messages that match the diff.
+
+fix: reset hero animation when leaving home section
+```
+
+## Branch rule
+
+Always push to whatever branch is checked out. Never switch branches unless the user asks.
+
+## Custom message from user
+
+If the user provides a message (`git push: update hero`), use it **only if** it accurately describes the staged diff. Otherwise suggest a corrected message.
+
+## Failures
+
+- Pre-commit hook fails → fix issue, create a **new** commit (never `--amend` unless user asks)
+- Nothing to commit and already up to date → report "Everything up-to-date"
+
+## Local script
+
+`./scripts/git-push.sh "message"` — message is **required** when there are changes. Agent must craft the message from the diff; do not run the script without a message.
