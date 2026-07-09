@@ -2,7 +2,7 @@ import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
 import { useRef, useState, useEffect } from 'react'
 import { useLenis } from 'lenis/react'
 import { useSection } from '../../contexts/SectionContext'
-import ColorBends from '../effects/ColorBends'
+import { useLoader } from '../../contexts/LoaderContext'
 
 const MAX_TILT = 12
 
@@ -10,6 +10,7 @@ export function Hero() {
   const cardRef = useRef<HTMLDivElement>(null)
   const [transform, setTransform] = useState({ rotateX: 0, rotateY: 0 })
   const { currentIndex } = useSection()
+  const { loaderRevealDone } = useLoader()
   const lenis = useLenis()
   const isHome = currentIndex === 0
 
@@ -50,43 +51,24 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex flex-col items-center justify-center min-h-screen pt-20 px-4"
+      className="relative flex flex-col items-center justify-center min-h-[50vh] py-20 px-4"
       style={{ perspective: '1000px' }}
     >
-      <div className="absolute inset-0 overflow-hidden" aria-hidden>
-        <ColorBends
-          colors={['#ff5c7a', '#8a5cff', '#00ffd1']}
-          rotation={0}
-          speed={0.2}
-          scale={1}
-          frequency={1}
-          warpStrength={1}
-          mouseInfluence={0.2}
-          parallax={0.5}
-          noise={0.1}
-          transparent
-          autoRotate={0}
-          className="absolute inset-0"
-        />
-      </div>
-      <div className="relative z-10 flex flex-col items-center">
+      <div
+        className="relative z-[1] flex flex-col items-center transition-none"
+        style={{ opacity: loaderRevealDone ? 1 : 0 }}
+      >
+      <div className="flex flex-col items-center">
       <div
         ref={cardRef}
-        className="relative border border-foreground/10 rounded-xl w-full max-w-[24rem] aspect-[3/4] flex flex-col justify-between px-6 py-6 transition-transform duration-150 ease-out bg-black/10 backdrop-blur-[100px]"
-        style={{
-          transformStyle: 'preserve-3d',
-          transform: `rotateX(${transform.rotateX}deg) rotateY(${transform.rotateY}deg)`,
-        }}
+        className="relative rounded-xl w-[32rem] aspect-[16/9] flex flex-col items-center justify-between px-6 py-6 transition-transform duration-150 ease-out bg-black/50 backdrop-blur-[100px]"
       >
-        <div>
-          <h1 className="text-2xl md:text-4xl font-medium text-foreground tracking-tight mb-2">
-            Muhammad<br/>Salmon
+        <div className="flex flex-col items-center">
+          <h1 className="text-2xl md:text-4xl font-medium text-foreground tracking-tight mb-2 text-center">
+            Muhammad Salmon
           </h1>
-          <p className="text-sm text-foreground mb-4">
+          <p className="text-sm text-foreground mb-4 text-center">
             Design & Code + AI
-          </p>
-          <p className="text-xs text-foreground leading-relaxed">
-            Based in Yogyakarta, Indonesia. Creative Director at SlabPixel. Building products and crafting digital experiences.
           </p>
         </div>
 
@@ -117,6 +99,7 @@ export function Hero() {
             <Mail className="h-3.5 w-3.5" />
           </a>
         </div>
+      </div>
       </div>
 
       <a

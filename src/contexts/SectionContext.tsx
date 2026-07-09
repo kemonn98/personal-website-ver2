@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
 
-export const SECTION_NAMES = ['Home', 'About', 'Work', 'Products', 'Contact'] as const
+export const SECTION_NAMES = ['Home', 'About', 'Work', 'Products', 'Blogs', 'Contact'] as const
 export const TOTAL_SECTIONS = SECTION_NAMES.length
 
 type SectionContextValue = {
@@ -21,7 +21,7 @@ const SectionContext = createContext<SectionContextValue>({
   setScrollContainer: () => {},
 })
 
-const SECTION_IDS = ['home', 'about', 'work', 'products', 'contact']
+const SECTION_IDS = ['home', 'about', 'work', 'products', 'blogs', 'contact']
 
 export function SectionProvider({ children }: { children: ReactNode }) {
   const [currentIndex, setCurrentIndex] = useState(0)

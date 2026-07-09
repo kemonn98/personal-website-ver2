@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ChevronLeft, ChevronRight, Mail } from 'lucide-react'
+import { VerticalGrid } from '../layout/VerticalGrid'
 
 const TOTAL_STEPS = 7
 
@@ -90,18 +91,20 @@ export function Contact() {
   const progressPercent = (step / progressBarSteps) * 100
 
   return (
-    <section id="contact" className="section flex items-center py-24">
-      <div className="site-wrap w-full">
-        <p className="label mb-4">Contact</p>
-        <h2 className="text-3xl font-medium text-foreground mb-6" data-font="display">
+    <section id="contact" className="section relative flex items-center py-24">
+      <div className="absolute inset-0 z-0 bg-background" aria-hidden />
+      <VerticalGrid />
+      <div className="site-wrap relative z-[2] w-full" data-gsap-reveal data-gsap-stagger>
+        <p className="label mb-4" data-gsap-item>[ CONTACT ]</p>
+        <h2 className="text-3xl font-medium text-foreground mb-6" data-font="display" data-gsap-item>
           Open to collaboration and new projects.
         </h2>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-10 max-w-xl">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-10 max-w-xl" data-gsap-item>
           Say hello and tell me a bit about what you have in mind. A few short questions and we&apos;re good to go.
         </p>
 
         {/* Card: fixed height, form content top, buttons bottom right */}
-        <div className="bg-card text-card-foreground rounded-xl h-[400px] flex flex-col overflow-hidden border border-border">
+        <div className="bg-card text-card-foreground rounded-md h-[400px] flex flex-col overflow-hidden">
           {/* Progress inside card */}
           <div
             className="shrink-0 px-5 pt-5 pb-3"
@@ -302,7 +305,7 @@ export function Contact() {
                 <button
                   type="button"
                   onClick={goNext}
-                  className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center gap-2 rounded-sm bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
                 >
                   Next
                   <ChevronRight className="h-4 w-4" />
@@ -311,7 +314,7 @@ export function Contact() {
               {step === TOTAL_STEPS - 1 && (
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center gap-2 rounded-sm bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
                 >
                   <Mail className="h-4 w-4" />
                   Submit via email
@@ -320,26 +323,6 @@ export function Contact() {
             </div>
           </form>
         </div>
-
-        <p className="text-xs text-muted-foreground mt-8">
-          <a
-            href="https://linkedin.com/in/muhsalmon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-foreground transition-colors"
-          >
-            LinkedIn
-          </a>
-          {' · '}
-          <a
-            href="https://github.com/muhsalmon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-foreground transition-colors"
-          >
-            GitHub
-          </a>
-        </p>
       </div>
     </section>
   )

@@ -1,4 +1,5 @@
 import { ExternalLink, ImageIcon } from 'lucide-react'
+import { VerticalGrid } from '../layout/VerticalGrid'
 import { useEffect, useRef, useState } from 'react'
 
 type ProductStatus = 'released' | 'development'
@@ -216,14 +217,17 @@ export function Products() {
     <section
       id="products"
       ref={sectionRef}
-      className="section flex flex-col justify-between py-24 cursor-grab active:cursor-grabbing z-10"
+      className="section relative flex flex-col justify-between py-24 cursor-grab active:cursor-grabbing"
     >
-      <div className="site-wrap w-full shrink-0">
-        <p className="label mb-6">Products & plugins</p>
-        <h2 className="text-3xl font-medium text-foreground mb-6" data-font="display">
+      <div className="absolute inset-0 z-0 bg-background" aria-hidden />
+      <VerticalGrid />
+      <div className="relative z-[2] flex flex-col justify-between shrink-0">
+      <div className="site-wrap w-full shrink-0" data-gsap-reveal>
+        <p className="label mb-6" data-gsap-item>[ PRODUCTS & PLUGINS ]</p>
+        <h2 className="text-3xl font-medium text-foreground mb-6" data-font="display" data-gsap-item>
           I like to build products, learn, code, and actively give impact to the community by building plugins.
         </h2>
-        <p className="text-sm text-muted-foreground leading-relaxed max-w-xl">
+        <p className="text-sm text-muted-foreground leading-relaxed max-w-xl" data-gsap-item>
           Tools and plugins that help design teams ship faster and stay consistent—from Figma to code and beyond.
         </p>
       </div>
@@ -232,11 +236,11 @@ export function Products() {
         className="products-track full-bleed w-full shrink-0 overflow-x-hidden overflow-y-visible py-16 relative"
       >
         <div
-          className="absolute inset-y-0 left-0 w-[20vw] max-w-[240px] bg-gradient-to-r from-background to-transparent pointer-events-none z-10"
+          className="absolute inset-y-0 left-0 w-[20vw] max-w-[240px] bg-gradient-to-r from-background to-transparent pointer-events-none z-[1]"
           aria-hidden
         />
         <div
-          className="absolute inset-y-0 right-0 w-[20vw] max-w-[240px] bg-gradient-to-l from-background to-transparent pointer-events-none z-10"
+          className="absolute inset-y-0 right-0 w-[20vw] max-w-[240px] bg-gradient-to-l from-background to-transparent pointer-events-none z-[1]"
           aria-hidden
         />
         <div
@@ -256,7 +260,7 @@ export function Products() {
               <a
                 key={index}
                 href={product.url}
-                className="products-card group absolute top-0 flex flex-col justify-between rounded-xl bg-card text-card-foreground p-5 shadow-sm transition-[box-shadow,border-color] duration-300 hover:border-muted-foreground/30 hover:shadow-md overflow-hidden will-change-transform"
+                className="products-card group absolute top-0 flex flex-col justify-between rounded-md bg-card text-card-foreground p-5 shadow-sm transition-[box-shadow,border-color] duration-300 hover:border-muted-foreground/30 hover:shadow-md overflow-hidden will-change-transform"
                 style={{
                   width: CARD_WIDTH,
                   height: CARD_HEIGHT,
@@ -299,6 +303,7 @@ export function Products() {
             )
           })}
         </div>
+      </div>
       </div>
     </section>
   )

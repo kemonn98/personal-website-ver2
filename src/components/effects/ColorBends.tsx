@@ -298,9 +298,10 @@ export default function ColorBends({
       pointerTargetRef.current.set(x, y);
     };
 
-    container.addEventListener('pointermove', handlePointerMove);
+    // Use window so we get pointer position even when another layer (e.g. main content z-10) is on top
+    window.addEventListener('pointermove', handlePointerMove);
     return () => {
-      container.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointermove', handlePointerMove);
     };
   }, []);
 
